@@ -1,0 +1,38 @@
+.page { 
+  padding: 24px; 
+}
+.toolbar { 
+	display:flex; 
+	gap:16px; 
+	align-items:center; 
+	margin-bottom: 16px; 
+}
+
+.spacer { 
+	flex: 1 1 auto; 
+}
+
+.paginator { 
+	display:flex; 
+	gap:12px; 
+	align-items:center; 
+	justify-content:flex-end; 
+	margin-top: 12px; 
+}
+
+.heroes_container {
+	width: 100%;
+    display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .heroes_container {
+	justify-content: center;
+  }
+}
+
+.skeleton{
+	width: 280px;
+}

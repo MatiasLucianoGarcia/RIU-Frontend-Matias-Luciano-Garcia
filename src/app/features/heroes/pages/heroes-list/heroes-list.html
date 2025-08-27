@@ -1,0 +1,49 @@
+<div class="page">
+    <h1>Heroes</h1>
+
+    <div class="toolbar">
+      <mat-form-field appearance="outline">
+        <mat-label>Filter</mat-label>
+        <input matInput [value]="filter()" (input)="onFilter($any($event.target).value)" placeholder="Search by name"/>
+      </mat-form-field>
+
+      <span class="spacer"></span>
+      <button mat-raised-button color="primary" (click)="goNew()">
+        <mat-icon>add</mat-icon> New
+      </button>
+    </div>
+
+    <div class="heroes_container">
+      @if(loading()) {
+        @for(a of [1,2,3,4]; track a){
+          <mat-card class="hero-card skeleton" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>
+                <span class="skeleton-text" style="width: 80px; height: 24px; background: #eee; display: inline-block;"></span>
+              </mat-card-title>
+              <mat-card-subtitle>
+                <span class="skeleton-text" style="width: 60px; height: 18px; background: #eee; display: inline-block;"></span>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <div style="height: 200px; background: #eee; margin-bottom: 1rem;"></div>
+            <mat-card-content></mat-card-content>
+            <mat-card-actions>
+              <span class="skeleton-btn" style="width: 60px; height: 36px; background: #eee; display: inline-block; margin-right: 8px;"></span>
+              <span class="skeleton-btn" style="width: 60px; height: 36px; background: #eee; display: inline-block;"></span>
+            </mat-card-actions>
+          </mat-card>
+        }
+      }@else{
+        @for(hero of heroes(); track hero.id){
+          <app-hero-card [hero]="hero" (onEditClick)="goEdit(hero.id)" (onDeleteClick)="onDelete(hero.id)"/>
+        }
+      }
+     
+    </div>
+
+    <div class="paginator">
+      <button mat-stroked-button (click)="prev()" [disabled]="page() <= 1">Prev</button>
+      <span>Page {{ page() }} / {{ totalPages() }}</span>
+      <button mat-stroked-button (click)="next()" [disabled]="page() >= totalPages()">Next</button>
+    </div>
+</div>
