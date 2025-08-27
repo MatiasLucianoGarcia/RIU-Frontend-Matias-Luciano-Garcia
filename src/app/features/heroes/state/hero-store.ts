@@ -47,8 +47,6 @@ export class HeroStore {
   }
 
   loadHeroes() {
-    // this.setLoading(true);
-    // Simula una petición HTTP para que el interceptor funcione
     this.http.get<Hero[]>('/heroes').subscribe({
       next: (list) => {
         this.setHeroes(list);

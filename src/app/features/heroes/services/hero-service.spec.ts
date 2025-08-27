@@ -59,24 +59,3 @@ describe('HeroService', () => {
     expect(service.lastError()).toContain('fail');
   });
 });
-
-// import { TestBed } from '@angular/core/testing';
-// import { HeroService } from './hero-service';
-// import { provideZoneChangeDetection } from '@angular/core';
-
-// describe('HeroService', () => {
-//   let service: HeroService;
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       providers: [
-//         HeroService,
-//         provideZoneChangeDetection()
-//       ]
-//     });
-//     service = TestBed.inject(HeroService);
-//   });
-
-//   it('debería ser creado', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });

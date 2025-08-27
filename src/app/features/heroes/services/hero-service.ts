@@ -13,7 +13,6 @@ export class HeroService {
   private readonly store = inject(HeroStore);
   private readonly destroyRef = inject(DestroyRef);
 
-  // señales públicas que la UI puede leer
   heroes = this.store.pagedHeroes;  // lista paginada
   loading = this.store.loading;
   filter = this.store.filter;
@@ -22,14 +21,10 @@ export class HeroService {
   totalItems = this.store.totalItems;
   pageSize = this.store.pageSize;
 
-  // señales útiles de feedback (opcional)
   lastError = signal<string | null>(null);
   
-
-  /** Carga inicial / refresco de lista */
   loadAll(): void {
     this.lastError.set(null);
-    // this.lastAction.set('load');
     this.store.setLoading(true);
 
     this.repo.findAll$()
@@ -40,8 +35,7 @@ export class HeroService {
         error: (err) => this.lastError.set(String(err?.message ?? err)),
       });
   }
-
-  /** Lecturas/estado de UI */
+  
   filterBy(query  : string): void { 
     this.store.setFilter(query); 
   }

@@ -67,25 +67,3 @@ describe('HeroStore', () => {
     expect(store.pagedHeroes()).toEqual([heroes[2]]);
   });
 });
-// import { TestBed } from '@angular/core/testing';
-// import { provideZoneChangeDetection } from '@angular/core';
-// import { HeroStore } from './hero-store';
-
-// describe('HeroStore', () => {
-//   // let service: HeroStore;
-
-//   beforeEach(async() => {
-//     await TestBed.configureTestingModule({
-//       providers: [
-//         provideZoneChangeDetection(),
-//         HeroStore,
-//       ],
-//     }).compileComponents();
-//       // service = TestBed.inject(HeroStore);
-//   });
-
-//   it('should be created', () => {
-//     // expect(service).toBeTruthy();
-//     expect(HeroStore).toBeTruthy();
-//   });
-// });
