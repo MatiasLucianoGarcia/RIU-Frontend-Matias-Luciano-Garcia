@@ -1,6 +1,4 @@
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeroCard } from './hero-card';
 import { provideZoneChangeDetection } from '@angular/core';
 import { Hero, Universe } from '../../domain/hero.model';
@@ -43,12 +41,47 @@ describe('HeroCard', () => {
       expect(compiled.querySelector('mat-card-title')?.textContent).toContain('Test Hero');
       expect(compiled.querySelector('mat-card-subtitle')?.textContent).toContain('Test AlterEgo');
     });
+  
+  it('should render placeholder image if hero.image is empty', () => {
+    const newHero: Hero = {
+      id: '2',
+      name: 'No Image',
+      alterEgo: 'Alter',
+      image: '',
+      powers: 'Power',
+      universe: Universe.DC,
+      createdAt: '',
+      updatedAt: ''
+    };
+    fixture.componentRef.setInput('hero', newHero);
+    fixture.detectChanges();
+    const img = fixture.nativeElement.querySelector('img');
+    expect(img?.getAttribute('src')).toContain('hero-default.png');
+  });
+  
+  it('should update hero input and reflect changes', () => {
+    const updatedHero: Hero = {
+      id: '1',
+      name: 'Updated Hero',
+      alterEgo: 'Updated AlterEgo',
+      image: '',
+      powers: 'Updated Power',
+      universe: Universe.MARVEL,
+      createdAt: '',
+      updatedAt: ''
+    };
+    fixture.componentRef.setInput('hero', updatedHero);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('mat-card-title')?.textContent).toContain('Updated Hero');
+    expect(compiled.querySelector('mat-card-subtitle')?.textContent).toContain('Updated AlterEgo');
+  });
 
     it('should render hero image with correct src', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const img = compiled.querySelector('img');
       expect(img).toBeTruthy();
-      expect(img?.getAttribute('src')).toBe('https://i.pinimg.com/1200x/a9/a8/c8/a9a8c8258957c8c7d6fcd320e9973203.jpg');
+      expect(img?.getAttribute('src')).toBe('../../../../../assets/images/hero-default.png');
       expect(img?.getAttribute('alt')).toContain('Photo of');
     });
 
@@ -67,4 +100,21 @@ describe('HeroCard', () => {
       deleteBtn?.click();
       expect(component.onDeleteClick.emit).toHaveBeenCalled();
     });
+
+    it('should change the src if the image is not hero-default.png', () => {
+      const event = {
+        target: { src: 'algo.png' }
+      } as unknown as Event;
+      component.onImgError(event);
+      expect((event.target as HTMLImageElement).src).toContain('hero-default.png');
+    });
+
+  it('should not change the src if the image is already hero-default.png', () => {
+    const event = {
+      target: { src: '../../../../../assets/images/hero-default.png' }
+    } as unknown as Event;
+    component.onImgError(event);
+    expect((event.target as HTMLImageElement).src).toBe('../../../../../assets/images/hero-default.png');
+  });
+
 });

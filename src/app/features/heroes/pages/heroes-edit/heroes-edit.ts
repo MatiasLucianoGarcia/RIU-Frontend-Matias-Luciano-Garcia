@@ -9,11 +9,12 @@ import { HeroService } from '../../services/hero-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Universe } from '../../domain/hero.model';
 import { MatIcon } from '@angular/material/icon';
+import { UppercaseInputDirective } from '../../../../core/directives/uppercase-input.directive';
 
 @Component({
   selector: 'app-heroes-edit',
   imports: [ReactiveFormsModule, NgIf,
-    MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule,MatIcon
+    MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule,MatIcon, UppercaseInputDirective
     ],
   templateUrl: './heroes-edit.html',
   styleUrl: './heroes-edit.scss'

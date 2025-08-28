@@ -6,8 +6,9 @@
     </mat-card-header>
     <img 
         mat-card-image 
-        [src]="hero().image || 'https://i.pinimg.com/1200x/a9/a8/c8/a9a8c8258957c8c7d6fcd320e9973203.jpg'"
-        [alt]="`Photo of ${hero.name}`"
+        [src]="hero().image || '../../../../../assets/images/hero-default.png'"
+        [alt]="`Photo of ${hero().name}`"
+        (error)="onImgError($event)"
     >
     <mat-card-content>
     </mat-card-content>

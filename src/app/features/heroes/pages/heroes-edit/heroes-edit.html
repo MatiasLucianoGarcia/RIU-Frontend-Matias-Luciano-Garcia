@@ -7,7 +7,7 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field class="full" appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name" teUppercase/>
+        <input matInput formControlName="name" appUppercaseInput/>
         <mat-error *ngIf="form.controls.name.invalid && form.controls.name.touched">
           Name is required (min 2 chars)
         </mat-error>
@@ -15,7 +15,7 @@
 
       <mat-form-field class="full" appearance="outline">
         <mat-label>Alter Ego</mat-label>
-        <input matInput formControlName="alterEgo" teUppercase/>
+        <input matInput formControlName="alterEgo" appUppercaseInput/>
         <mat-error *ngIf="form.controls.alterEgo.invalid && form.controls.alterEgo.touched">
           Name is required (min 2 chars)
         </mat-error>
