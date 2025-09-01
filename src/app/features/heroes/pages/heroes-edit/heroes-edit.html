@@ -1,58 +1,63 @@
-  <div class="page">
-    <h1 style="cursor: pointer;" (click)="goBack()">
-      <mat-icon aria-hidden="false" fontIcon="arrow_back"></mat-icon> 
-      {{ isEdit ? 'Edit Hero' : 'New Hero' }}
-    </h1>
+<div class="page">
+  <h1 style="cursor: pointer" (click)="goBack()">
+    <mat-icon aria-hidden="false" fontIcon="arrow_back"></mat-icon>
+    {{ isEdit ? 'Edit Hero' : 'New Hero' }}
+  </h1>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field class="full" appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" appUppercaseInput/>
-        <mat-error *ngIf="form.controls.name.invalid && form.controls.name.touched">
-          Name is required (min 2 chars)
-        </mat-error>
-      </mat-form-field>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" appUppercaseInput />
+      <mat-error *ngIf="form.controls.name.invalid && form.controls.name.touched">
+        Name is required (min 2 chars)
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field class="full" appearance="outline">
-        <mat-label>Alter Ego</mat-label>
-        <input matInput formControlName="alterEgo" appUppercaseInput/>
-        <mat-error *ngIf="form.controls.alterEgo.invalid && form.controls.alterEgo.touched">
-          Name is required (min 2 chars)
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Alter Ego</mat-label>
+      <input matInput formControlName="alterEgo" />
+      <mat-error *ngIf="form.controls.alterEgo.invalid && form.controls.alterEgo.touched">
+        Alter ego is required (min 2 chars)
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field class="full" appearance="outline">
-        <mat-label>Power</mat-label>
-        <input matInput formControlName="power"/>
-      </mat-form-field>
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Power</mat-label>
+      <input matInput formControlName="power" />
+    </mat-form-field>
 
-      <mat-form-field class="full" appearance="outline">
-        <mat-label>Universe</mat-label>
-        <mat-select formControlName="universe">
-          <mat-option [value]="null">—</mat-option>
-          <mat-option value="Marvel">Marvel</mat-option>
-          <mat-option value="DC">DC</mat-option>
-          <mat-option value="Other">Other</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      <mat-form-field class="full" appearance="outline">
-        <mat-label>Image URL</mat-label>
-        <input matInput formControlName="imageUrl"/>
-      </mat-form-field>
-      
-      <div class="full" style="margin-bottom: 1rem;">
-        <label class="mat-label" style="display:block; margin-bottom: 0.5rem;">Upload image</label>
-        <input type="file" accept="image/*" (change)="onFileSelected($event)" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 100%;" />
-      </div>
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Universe</mat-label>
+      <mat-select formControlName="universe">
+        <mat-option [value]="null">—</mat-option>
+        <mat-option value="Marvel">Marvel</mat-option>
+        <mat-option value="DC">DC</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <div *ngIf="preview()" class="preview">
-        <img [src]="preview()" alt="preview" />
-      </div>
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="imageUrl" />
+    </mat-form-field>
 
-      <div class="actions">
-        <button mat-stroked-button type="button" (click)="goBack()">Cancel</button>
-        <button mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
-      </div>
-    </form>
-  </div>
+    <div class="full" style="margin-bottom: 1rem">
+      <label class="mat-label" style="display: block; margin-bottom: 0.5rem">Upload image</label>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 100%"
+      />
+    </div>
+
+    <div *ngIf="preview()" class="preview">
+      <img [src]="preview()" alt="preview" />
+    </div>
+
+    <div class="actions">
+      <button mat-stroked-button type="button" (click)="goBack()">Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+</div>
